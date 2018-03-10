@@ -4,23 +4,30 @@ const data = [];
 //stores tweets
 
 function add (name, content) {
-  data.push({ name: name, content: content });
+  data.push({ name: name, content: content, id: data.length });
 }
 
 function list () {
   return _.cloneDeep(data);
+  //clones the object in the array that look similar but are not the
+  //same object nor same array
+  //we need to return a copy so no one is messing with original array
 }
 
 function find (properties) {
   // console.log(properties);
   // console.log(data);r
-  let arr =  _.cloneDeep(_.filter(data, properties));
-
-  return arr;
+  return  _.cloneDeep(_.filter(data, properties));
 }
 
 module.exports = { add: add, list: list, find: find };
-
+// console.log(data);
+// add('Gabriel', 'Hello');
+// console.log(data);
+// console.log(list());
+// console.log(data === list());
+// console.log(data[0] === list()[0]);
+//shows that not even a single object in the list is the same
 
 const randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -43,7 +50,8 @@ for (let i = 0; i < 10; i++) {
 
 add("Harry Potter", "Goblins!!!! Merlin\'s beard!");
 
-console.log(find({name :"Harry Potter"}));
-//find expects an object as a param
+console.log(data);
+// console.log(find({name :"Harry Potter"}));
+// find expects an object as a param
 
 
